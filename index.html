@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bluetooth Songs — Slowed & Reverb</title>
+
+  <!-- Styles & YouTube API -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Animated particles canvas -->
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+  <!-- Neon header / hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <img id="logo" src="logo-placeholder.png" alt="Bluetooth Songs logo" class="logo" />
+      <h1 class="title">Bluetooth Songs</h1>
+      <p class="subtitle">Slowed • Reverb • Neon Nights</p>
+      <a href="#songs" class="btn btn-primary">Listen Now</a>
+    </div>
+    <div class="neon-lines" aria-hidden="true"></div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <a href="#about">About</a>
+    <a href="#songs">Songs</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#request">Request</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About -->
+  <section id="about" class="section glass">
+    <h2>About Bluetooth Songs</h2>
+    <p>Curated slowed + reverbed edits for late-night drives, study hours, and chill moments. Neon aesthetics, soft bass, and dreamy reverb — tuned for calm.</p>
+  </section>
+
+  <!-- Songs / Dynamic -->
+  <section id="songs" class="section wide">
+    <h2>Latest Uploads</h2>
+    <div id="video-grid" class="grid"></div>
+    <div class="center">
+      <button id="load-more" class="btn">Load more</button>
+    </div>
+  </section>
+
+  <!-- Playlist -->
+  <section id="playlist" class="section glass">
+    <h2>Featured Playlist</h2>
+    <div id="playlist-container" class="grid playlist-grid"></div>
+  </section>
+
+  <!-- Request form -->
+  <section id="request" class="section">
+    <h2>Request A Song</h2>
+    <form id="request-form" class="glass form">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="text" name="song" placeholder="Song name & artist" required />
+      <textarea name="note" rows="3" placeholder="Why this song? (optional)"></textarea>
+      <div class="form-row">
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+        <button id="demo-visual" type="button" class="btn">Demo Visualizer</button>
+      </div>
+      <p id="request-status" class="status"></p>
+    </form>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="footer glass">
+    <div class="footer-grid">
+      <div>
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <div class="socials">
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Telegram">Telegram</a>
+        </div>
+      </div>
+      <div>
+        <h3>About</h3>
+        <p>© 2025 Bluetooth Songs — All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Neon modal player -->
+  <div id="player-modal" class="player-modal" aria-hidden="true">
+    <div class="player-wrap glass neon-border">
+      <button id="close-player" class="close-btn" aria-label="Close player">&times;</button>
+      <div id="player" class="yt-player"></div>
+      <div class="player-controls">
+        <button id="toggle-mute" class="btn small">Mute</button>
+        <button id="open-youtube" class="btn small">Open in YouTube</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- small accessibility skip link -->
+  <a class="skip-link" href="#songs">Skip to songs</a>
+</body>
+</html>
