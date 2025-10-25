@@ -306,15 +306,22 @@ track.addEventListener('mousemove', (e)=>{
   track.scrollLeft = scrollLeft - walk;
 });
 
-// touch support
-track.addEventListener('touchstart', (e)=>{ isDragging=true; startX = e.touches[0].pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
-track.addEventListener('touchend', ()=>{ isDragging=false; });
+// touch support (prevents page from moving sideways)
+track.addEventListener('touchstart', (e)=>{ 
+  isDragging = true; 
+  startX = e.touches[0].clientX; 
+  scrollLeft = track.scrollLeft; 
+}, { passive: true });
+
 track.addEventListener('touchmove', (e)=>{
   if(!isDragging) return;
-  const x = e.touches[0].pageX - track.offsetLeft;
-  const walk = (x - startX) * 1.5;
+  const x = e.touches[0].clientX;
+  const walk = (x - startX) * 2; 
   track.scrollLeft = scrollLeft - walk;
-});
+}, { passive: true });
+
+track.addEventListener('touchend', ()=>{ isDragging = false; });
+
 
 // arrows navigation
 prevBtn.addEventListener('click', ()=>{ track.scrollBy({ left:-400, behavior:'smooth' }); });
