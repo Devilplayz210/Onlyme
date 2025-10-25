@@ -102,3 +102,38 @@ html,body { height:100%; margin:0; font-family: Inter, ui-sans-serif, system-ui,
 
 /* skip link */
 .skip-link { position:fixed; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+/* carousel container */
+.carousel {
+  overflow: hidden;
+  position: relative;
+  padding: 16px 0;
+}
+
+/* horizontal track */
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
+  scroll-behavior: smooth;
+  will-change: transform;
+  cursor: grab;
+}
+
+/* grab cursor on drag */
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+/* hide scrollbar */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* buttons */
+.carousel-nav { margin-top:12px; display:flex; justify-content:center; gap:12px; }
+.carousel-nav .btn { min-width:50px; font-weight:bold; }
