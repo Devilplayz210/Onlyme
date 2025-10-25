@@ -141,3 +141,10 @@ html,body { height:100%; margin:0; font-family: Inter, ui-sans-serif, system-ui,
 /* buttons */
 .carousel-nav { margin-top:12px; display:flex; justify-content:center; gap:12px; }
 .carousel-nav .btn { min-width:50px; font-weight:bold; }
+
+
+/* prevent page stretch & improve swipe */
+.carousel-track {
+  overscroll-behavior: contain; /* stops page dragging when swiping carousel */
+  touch-action: pan-y;          /* allows vertical scroll, disables horizontal page scroll */
+}
