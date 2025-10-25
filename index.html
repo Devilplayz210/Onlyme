@@ -43,9 +43,20 @@
   <!-- Songs / Dynamic -->
   <section id="songs" class="section wide">
     <h2>Latest Uploads</h2>
-    <div id="video-grid" class="grid"></div>
-    <div class="center">
-      <button id="load-more" class="btn">Load more</button>
+    <!-- Carousel wrapper for swipe -->
+<div id="video-carousel" class="carousel">
+  <div id="video-grid" class="carousel-track"></div>
+</div>
+
+<!-- Load more button below carousel -->
+<div class="carousel-nav center">
+  <button id="prev-btn" class="btn">&lt;</button>
+  <button id="next-btn" class="btn">&gt;</button>
+</div>
+
+<div class="center">
+  <button id="load-more" class="btn">Load more</button>
+</div>
     </div>
   </section>
 
