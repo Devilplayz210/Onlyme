@@ -1,3 +1,7 @@
+html, body {
+  overflow-x: hidden;
+}
+
 /* Neon Night Drive theme - Bluetooth Songs
    Blue / purple neon gradient, glass cards, particle canvas, neon borders.
 */
