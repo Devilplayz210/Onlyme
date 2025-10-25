@@ -282,3 +282,39 @@ document.addEventListener('DOMContentLoaded', ()=>{
 document.addEventListener('keydown', (e)=>{
   if (e.key === 'Escape' && modal.classList.contains('open')) closePlayerModal();
 });
+
+
+/* carousel container */
+.carousel {
+  overflow: hidden;
+  position: relative;
+  padding: 16px 0;
+}
+
+/* horizontal track */
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
+  scroll-behavior: smooth;
+  will-change: transform;
+  cursor: grab;
+}
+
+/* grab cursor on drag */
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+/* hide scrollbar */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* buttons */
+.carousel-nav { margin-top:12px; display:flex; justify-content:center; gap:12px; }
+.carousel-nav .btn { min-width:50px; font-weight:bold; }
