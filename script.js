@@ -283,38 +283,39 @@ document.addEventListener('keydown', (e)=>{
   if (e.key === 'Escape' && modal.classList.contains('open')) closePlayerModal();
 });
 
+// ====== Horizontal swipe carousel ======
+const track = document.getElementById('video-grid');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-/* carousel container */
-.carousel {
-  overflow: hidden;
-  position: relative;
-  padding: 16px 0;
-}
+let isDragging = false, startX = 0, scrollLeft = 0;
 
-/* horizontal track */
-.carousel-track {
-  display: flex;
-  gap: 18px;
-  transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
-  scroll-behavior: smooth;
-  will-change: transform;
-  cursor: grab;
-}
+track.addEventListener('mousedown', (e)=>{
+  isDragging = true;
+  track.classList.add('dragging');
+  startX = e.pageX - track.offsetLeft;
+  scrollLeft = track.scrollLeft;
+});
+track.addEventListener('mouseleave', ()=>{ isDragging = false; track.classList.remove('dragging'); });
+track.addEventListener('mouseup', ()=>{ isDragging = false; track.classList.remove('dragging'); });
+track.addEventListener('mousemove', (e)=>{
+  if(!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - track.offsetLeft;
+  const walk = (x - startX) * 1.5; // scroll speed
+  track.scrollLeft = scrollLeft - walk;
+});
 
-/* grab cursor on drag */
-.carousel-track:active {
-  cursor: grabbing;
-}
+// touch support
+track.addEventListener('touchstart', (e)=>{ isDragging=true; startX = e.touches[0].pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+track.addEventListener('touchend', ()=>{ isDragging=false; });
+track.addEventListener('touchmove', (e)=>{
+  if(!isDragging) return;
+  const x = e.touches[0].pageX - track.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  track.scrollLeft = scrollLeft - walk;
+});
 
-/* hide scrollbar */
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
-.carousel-track {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* buttons */
-.carousel-nav { margin-top:12px; display:flex; justify-content:center; gap:12px; }
-.carousel-nav .btn { min-width:50px; font-weight:bold; }
+// arrows navigation
+prevBtn.addEventListener('click', ()=>{ track.scrollBy({ left:-400, behavior:'smooth' }); });
+nextBtn.addEventListener('click', ()=>{ track.scrollBy({ left:400, behavior:'smooth' }); });
